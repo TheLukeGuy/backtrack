@@ -20,5 +20,9 @@ jobs:
         run: >-
           tests/executor/target/release/backtrack-test-executor
           extract-compilers
+      - name: Install fonts
+        run: |
+          brew tap homebrew/cask-fonts
+          brew install font-libertinus
       - name: Run tests
         run: tests/executor/target/release/backtrack-test-executor test
