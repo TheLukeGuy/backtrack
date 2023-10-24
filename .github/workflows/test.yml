@@ -1,0 +1,16 @@
+name: Test
+on: [pull_request, push]
+jobs:
+  test:
+    name: Test
+    runs-on: macos-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+      - name: Build test executor
+        run: cargo build --release
+        working-directory: tests/executor
+      - name: Run tests
+        run: tests/executor/target/release/backtrack-test-executor test
