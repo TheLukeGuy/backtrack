@@ -12,5 +12,9 @@ jobs:
       - name: Build test executor
         run: cargo build --release
         working-directory: tests/executor
+      - name: Extract compilers
+        run: >-
+          tests/executor/target/release/backtrack-test-executor
+          extract-compilers
       - name: Run tests
         run: tests/executor/target/release/backtrack-test-executor test
