@@ -74,5 +74,8 @@
 // > with brackets.
 #let v2023-02-15-supported() = eval("0") == 0
 
-// TODO: Add a check for v2023-02-12. This may be impossible.
+// From the changelog:
+// > Fixed parsing of not in operation
+#let v2023-02-12-supported() = -1 not in (1, 2, 3)
+
 // TODO: Add a check for v2023-02-02. This may be impossible.

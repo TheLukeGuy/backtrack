@@ -41,6 +41,8 @@
     }
   } else if v2023-02-15-supported() {
     versions.v2023-02-15
+  } else if v2023-02-12-supported() {
+    versions.v2023-02-12
   } else {
     versions.v2023-01-30
   }
