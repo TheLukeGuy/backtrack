@@ -23,7 +23,7 @@ use std::{
 
 use anyhow::{bail, Context, Result};
 use args::{Args, Cmd, CompilersSpec};
-use log::{debug, error, info};
+use log::{debug, error, info, warn};
 use owo_colors::{OwoColorize, Style};
 use terminal_size::{terminal_size, Width};
 use thiserror::Error;
@@ -116,16 +116,13 @@ pub fn run(args: Args) -> Result<()> {
             success = false;
             continue;
         }
-        match compiler.reported_version() {
-            Ok(version) => {
-                info!("The compiler reports itself as \"{version}\".");
-            }
-            Err(err) => {
-                error!("Failed to get the compiler version: {err}");
-                results.insert(compiler.into_name(), OpResult::Err("version"));
-                success = false;
-                continue;
-            }
+        if let Ok(version) = compiler.reported_version() {
+            info!("The compiler reports itself as \"{version}\".");
+        } else {
+            warn!(concat!(
+                "Failed to get the compiler version.",
+                " This is probably just an old (pre-3/21) compiler.",
+            ));
         }
 
         let result = match op {
