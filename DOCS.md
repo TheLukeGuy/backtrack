@@ -56,10 +56,10 @@ otherwise, this is a `version` in all version objects.
 
 > [!WARNING]
 > Comparison operations are only valid when at least one of their operands is
-> the current version. For instance, comparing `current-version` and
-> `versions.post-v0-8-0(0, 9, 0)` is valid, while comparing `versions.v0-1-0`
-> and `versions.post-v0-8-0(0, 9, 0)` is undefined and may produce
-> counterintuitive results.
+> the current version. For instance, comparing `current-version` and a version
+> object for 0.9.0 is valid, while comparing a version object for 0.9.0 and
+> another for 1.0.0 is undefined and **will** produce counterintuitive results
+> when compiled on specific Typst versions.
 >
 > This is a case of prioritizing simplicity over versatility.
 
